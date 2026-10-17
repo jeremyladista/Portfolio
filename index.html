@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jeremy Ladista | Jeremy’s Line</title>
+  <meta name="description" content="Portfolio of Jeremy Ladista, front-end developer. Ride Jeremy’s Line  through six stations to explore projects, skills and mini games.">
+  <meta property="og:title" content="Jeremy Ladista | Jeremy’s Line">
+  <meta property="og:description" content="A portfolio told as a sunset train journey with six stops and a few games on the way.">
+
+  <!-- Fonts: needs internet; without it the page falls back to system fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap">
+  <!-- All the design lives in style.css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="title">
+  <!-- Drawing layers (script.js paints these): landscape, speed lines + confetti -->
+  <canvas id="bg"></canvas>
+  <canvas id="fx"></canvas>
+
+  <!-- Station name sign that drops in while the train travels -->
+  <div id="sign">
+    <small>NEXT STOP</small>
+    <b id="sn"></b>
+  </div>
+
+  <!-- Layer for the train that passes the camera when you press "All aboard" -->
+  <canvas id="tw"></canvas>
+
+  <!-- Title screen -->
+  <div class="start" id="start">
+    <div class="sb">A portfolio journey in six stops</div>
+    <h1 class="gt">Jeremy’s Line</h1>
+    <div class="sb">Board at dusk, ride through five landscapes, and play a few games on the way.</div>
+    <button class="btn p" id="go" style="font-size:16px;padding:16px 46px">All aboard</button>
+  </div>
+
+  <!-- Top bar: logo, route strip (visible on station pages), sound toggle -->
+  <nav class="nav" aria-label="Main">
+    <button class="logo" id="logo" aria-label="Back to the title screen">
+      <svg width="30" height="30" viewBox="0 0 32 32">
+        <rect x="3" y="7" width="26" height="16" rx="6" fill="#ffd166"/>
+        <rect x="7" y="11" width="7" height="6" rx="2" fill="#1b1747"/>
+        <rect x="17" y="11" width="9" height="6" rx="2" fill="#1b1747"/>
+        <circle cx="10" cy="26" r="3" fill="#ff6b9d"/>
+        <circle cx="22" cy="26" r="3" fill="#ff6b9d"/>
+      </svg>JEREMY’S LINE</button>
+
+    <div class="strip" id="strip" aria-label="Stations">
+      <i class="pr"></i>
+      <i class="tm"></i>
+      <button class="sd on" data-go="home" aria-label="Home"><i></i><b>Home</b></button>
+      <button class="sd" data-go="about" aria-label="About"><i></i><b>About</b></button>
+      <button class="sd" data-go="lib" aria-label="Projects"><i></i><b>Projects</b></button>
+      <button class="sd" data-go="potion" aria-label="Skills"><i></i><b>Skills</b></button>
+      <button class="sd" data-go="arcade" aria-label="Games"><i></i><b>Games</b></button>
+      <button class="sd" data-go="contact" aria-label="Contact"><i></i><b>Contact</b></button>
+    </div>
+
+    <button class="l" id="mute" aria-pressed="false">Sound: on</button>
+  </nav>
+
+  <!-- Home screen: intro text on the left, transit map + departure board on the right -->
+  <section id="hero">
+    <div>
+      <span class="pill"><i class="dot"></i><span id="stt"></span></span>
+      <p class="hello">&gt; now boarding. hi, I'm</p>
+      <h1 class="name" id="nm"></h1>
+      <p class="role"><i>&#9656;</i> <span id="role"></span><span class="cur"></span></p>
+      <p class="lead" id="bio"></p>
+      <div class="cta">
+        <button class="btn p" data-go="lib">See my work</button>
+        <button class="btn o" data-go="about">About me</button>
+      </div>
+    </div>
+
+    <div class="rc">
+      <div class="mapc" id="mapc">
+        <svg id="ms" viewBox="0 0 960 520" aria-hidden="true"></svg>
+      </div>
+      <div class="board" id="board">
+        <header><span>DEPARTURES</span><span>PLATFORM</span></header>
+      </div>
+    </div>
+  </section>
+
+  <!-- Station pages (About, Projects, Skills, Games, Contact) are rendered into #box by script.js -->
+  <div class="overlay" id="ov">
+    <div class="box" id="box"></div>
+  </div>
+
+  <!-- Small message bar (passport stamps, reminders) -->
+  <div id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
